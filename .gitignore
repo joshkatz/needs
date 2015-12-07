@@ -1,0 +1,11 @@
+*.log
+.DS_Store
+node_modules
+
+*.RData
+*.Rproj
+.Rapp.history
+.Rhistory
+.Rproj.user
+
+README.html
