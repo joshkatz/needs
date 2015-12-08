@@ -1,0 +1,9 @@
+{
+  "name": "needs",
+  "version": "0.0.1",
+  "description": "An R function for safe package loading / installation",
+  "author": {
+    "name": "Josh Katz",
+  },
+  "repository": "joshkatz/needs"
+}
