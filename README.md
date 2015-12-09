@@ -1,25 +1,21 @@
 # needs
 
-`needs` is an R function for safe package loading / installation -- use it in place of `library` to automatically install, then attach, any missing packages.
-
-Supply a minimum version number to update old packages as needed.
+`needs` is an R function for safe package loading / installation &mdash; use it in place of `library` to attach packages and automatically install any that are missing. You can also supply a minimum version number, and it will update old packages as needed. No more changing your code to reinstall packages every time you update R &mdash; `needs` does it for you.
 
 ### Usage
-`needs` can be used as all or part of an Rprofile or sourced into R code directly, prior to any package loading.
+Use `needs.R` as all or part of an Rprofile or source it into R code directly prior to any package loading.
 
 ##### Rprofile
-To use as your Rprofile:
+One-line installer:
 ```
 curl https://raw.githubusercontent.com/joshkatz/needs/master/needs.R >> ~/.Rprofile
 ```
-Within R, use `needs` just as you would `library`.
+Now within R, use `needs` just as you would `library`.
 ```r
 needs(dplyr, rvest)
 ```
 
-
 ##### Source
-
 If you use npm, needs can help make code-sharing easier. In your project directory:
 ```
 npm install joshkatz/needs --save
