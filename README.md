@@ -5,21 +5,29 @@
 Supply a minimum version number to update old packages as needed.
 
 ### Usage
-
 `needs` can be used as all or part of an Rprofile or sourced into R code directly, prior to any package loading.
 
+##### Rprofile
+To use as your Rprofile:
+```
+curl https://raw.githubusercontent.com/joshkatz/needs/master/needs.R >> ~/.Rprofile
+```
+Within R, use `needs` just as you would `library`.
 ```r
-source("needs.R")
 needs(dplyr, rvest)
 ```
+
+
+##### Source
 
 If you use npm, needs can help make code-sharing easier. In your project directory:
 ```
 npm install joshkatz/needs --save
 ```
-Then use this in your R code:
+In your R code:
 ```r
 source("node_modules/needs/needs.R")
+needs(dplyr, rvest)
 ```
 Now if someone else clones your project, they can run your R scripts without worrying about package installation.
 
