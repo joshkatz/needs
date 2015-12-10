@@ -1,6 +1,6 @@
 
 # create invisible environment
-if (".i" %in% search()) detach(.i)
+while (".i" %in% search()) detach(.i)
 .i <- new.env()
 
 .i$needs <- function(...) {
