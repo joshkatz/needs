@@ -1,7 +1,7 @@
 Package: needs
 Type: Package
 Title: Attaches and Installs Packages
-Version: 0.0.0.9004
+Version: 0.0.0-9005
 Authors@R: person("Josh", "Katz", email = "josh.katz@nytimes.com", role = c("aut", "cre"))
 Description: A simple function for safe package loading and auto-installation.
 URL: https://github.com/joshkatz/needs
