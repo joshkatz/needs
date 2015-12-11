@@ -1,31 +1,28 @@
 # needs
 
-`needs` is a simple R package for safe package loading / installation -- use it in place of `library` to automatically install, then attach, any missing packages.
-
-Supply a minimum version number to update old packages as needed.
-
-`needs` can be used as all or part of an Rprofile or sourced into R code directly, prior to any package loading.
+`needs` is a simple R package for safe package loading / installation &mdash; use it in place of `library` to attach packages and automatically install any that are missing. You can also supply a minimum version number, and it will update old packages as needed. No more changing your code to reinstall packages every time you update R &mdash; `needs` does it for you.
 
 ```r
-source("needs.R")
-needs(dplyr, rvest) 
+devtools::install_github("joshkatz/needs")
 ```
-### Installation
 
-If you use npm, needs can help make code-sharing easier. Just add this to your package.json dependencies:
-```"needs": "joshkatz/needs"```
-
-And use this in your R code:
+### Usage
+Use `needs.R` as all or part of an Rprofile or source it into R code directly prior to any package loading. Even better, now you can install as a package &mdash; select "yes" when prompted, then use just as you would `library`.
 ```r
-source("node_modules/needs/needs.R")
-needs(knitr)
+needs(dplyr, magrittr, rvest)
 ```
 
-Now if someone else clones your project, they can run your R scripts without worrying about package installation.
+### Rprofile
+`needs` can help make code-sharing easier. In your project directory:
+```r
+needs::renderProfile()
+```
+This extracts the package contents and appends it to the Rprofile in your working directory. Now if someone else clones your project, your code runs without requiring any extra installation or throwing errors for uninstalled packages.
+
 
 ### Syntax
 
-Give arguments as unquoted names `needs(shiny)`, character strings `needs("RColorBrewer")`, or as a mixture of the two `needs("dplyr", jsonlite, "magrittr")`.
+Give arguments as unquoted names `needs(shiny)`, character strings `needs("RColorBrewer")`, or a mixture of the two `needs("knitr", jsonlite, "magrittr")`.
 
 You can specify a required package version using `:` or with a pairlist:
 ```r
