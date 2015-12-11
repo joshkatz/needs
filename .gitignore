@@ -4,8 +4,8 @@ node_modules
 
 *.RData
 *.Rproj
+*.tar.gz
 .Rapp.history
 .Rhistory
 .Rproj.user
-
-README.html
+tmp*

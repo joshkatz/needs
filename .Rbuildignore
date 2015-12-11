@@ -1,0 +1,11 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.Rprofile$
+
+^bin$
+^Makefile$
+^needs\.R$
+^package\.json$
+^tmp.
+^build-src/
+^NEWS\.md$

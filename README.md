@@ -1,6 +1,8 @@
 # needs
 
-`needs` is an R function for safe package loading / installation -- use it in place of `library` to automatically install, then attach, any missing packages.
+Still in development mode.
+
+`needs` is an R package for safe package loading / installation -- use it in place of `library` to automatically install, then attach, any missing packages.
 
 Supply a minimum version number to update old packages as needed.
 

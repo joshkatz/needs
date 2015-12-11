@@ -1,9 +1,10 @@
 {
   "name": "needs",
-  "version": "0.0.1",
-  "description": "An R function for safe package loading / installation",
+  "version": "0.0.0.9004",
+  "description": "A simple function for safe package loading and auto-installation.",
   "author": {
-    "name": "Josh Katz"
+    "name": "Josh Katz",
+    "email": "josh.katz@nytimes.com"
   },
   "repository": "joshkatz/needs"
 }

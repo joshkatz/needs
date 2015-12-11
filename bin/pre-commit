@@ -1,0 +1,3 @@
+#!/bin/bash
+
+make -q || (echo -e "\033[31merror\033[0m: You must run \033[1mmake\033[0m before committing!"; exit 1)
