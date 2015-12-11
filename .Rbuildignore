@@ -1,11 +1,13 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.Rprofile$
+^node_modules/
+^_id$
 
 ^bin$
 ^Makefile$
 ^needs\.R$
 ^package\.json$
 ^tmp.
-^build-src/
 ^NEWS\.md$
+^README\.md$

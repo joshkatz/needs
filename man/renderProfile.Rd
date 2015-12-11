@@ -2,17 +2,17 @@
 % Please edit documentation in R/renderProfile.R
 \name{renderProfile}
 \alias{renderProfile}
-\title{Generate Rprofile}
+\title{Append to Rprofile in current working directory.}
 \usage{
 renderProfile(append = T)
 }
 \arguments{
-\item{append}{Whether to overwrite or append to the current Rprofile, if one exists. Defaults to true.}
+\item{append}{Whether to append to the current Rprofile, if one exists. Set
+to false to overwrite.}
 }
 \description{
-Write to Rprofile
-}
-\details{
-Writes to Rprofile in the current working directory.
+Exports the package functionality to .Rprofile in the current working
+directory. Now the same code you run can be run on another system without
+requiring any extra installation or throwing errors for uninstalled packages.
 }
 

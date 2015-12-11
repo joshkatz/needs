@@ -1,3 +1,10 @@
 #!/bin/bash
 
-make -q || (echo -e "\033[31merror\033[0m: You must run \033[1mmake\033[0m before committing!"; exit 1)
+if make -q 
+	then 
+		if grep -q 1 inst/extdata/promptUser
+			then exit 0
+		else (echo -e "\033[31merror\033[0m: promptUser flag reset. Run make."; exit 1)
+	fi
+else (echo -e "\033[31merror\033[0m: You must run \033[1mmake\033[0m before committing!"; exit 1)
+fi

@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+var crypto = require("crypto");
+
+process.stdout.write(crypto.randomBytes(4).toString("hex"));

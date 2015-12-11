@@ -1,4 +1,4 @@
-#' Go get a package.
+#' Load/install packages.
 #'
 #' Attempts to attach packages. If it fails, first installs, then attaches. Use
 #' it in place of \code{library} to automatically install, then attach, any

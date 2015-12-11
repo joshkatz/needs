@@ -1,10 +1,11 @@
-#' Generate Rprofile
+#' Append to Rprofile in current working directory.
 #'
-#' Write to Rprofile
+#' Exports the package functionality to .Rprofile in the current working
+#' directory. Now the same code you run can be run on another system without
+#' requiring any extra installation or throwing errors for uninstalled packages.
 #'
-#' Writes to Rprofile in the current working directory.
-#'
-#' @param append Whether to overwrite or append to the current Rprofile, if one exists. Defaults to true.
+#' @param append Whether to append to the current Rprofile, if one exists. Set
+#'   to false to overwrite.
 #'
 #' @export
 

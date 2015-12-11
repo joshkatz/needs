@@ -1,8 +1,6 @@
 # needs
 
-Still in development mode.
-
-`needs` is an R package for safe package loading / installation -- use it in place of `library` to automatically install, then attach, any missing packages.
+`needs` is a simple R package for safe package loading / installation -- use it in place of `library` to automatically install, then attach, any missing packages.
 
 Supply a minimum version number to update old packages as needed.
 
@@ -10,7 +8,7 @@ Supply a minimum version number to update old packages as needed.
 
 ```r
 source("needs.R")
-needs(dplyr, rvest)
+needs(dplyr, rvest) 
 ```
 ### Installation
 
@@ -39,7 +37,5 @@ Alternate syntax is okay too.
 ```r
 needs(jsonlite(v0.9.1),
       "jsonlite = 0.9.1",
-      jsonlite: v0.9.1,
-      jsonlite/v0.9.1,
-      jsonlite: "0.9.1")
+      jsonlite: v0.9.1)
 ```

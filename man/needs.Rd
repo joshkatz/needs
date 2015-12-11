@@ -2,7 +2,7 @@
 % Please edit documentation in R/needs.R
 \name{needs}
 \alias{needs}
-\title{Go get a package.}
+\title{Load/install packages.}
 \usage{
 needs(...)
 }
