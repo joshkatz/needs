@@ -1,6 +1,6 @@
 {
   "name": "needs",
-  "version": "0.0.0.9004",
+  "version": "0.0.0-9005",
   "description": "A simple function for safe package loading and auto-installation.",
   "author": {
     "name": "Josh Katz",
