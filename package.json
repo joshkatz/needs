@@ -1,7 +1,7 @@
 {
   "name": "needs",
-  "version": "0.0.0-9005",
-  "description": "A simple function for safe package loading and auto-installation.",
+  "version": "0.0.1",
+  "description": "A simple function for easier package loading and auto-installation.",
   "author": {
     "name": "Josh Katz",
     "email": "josh.katz@nytimes.com"

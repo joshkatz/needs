@@ -2,26 +2,35 @@
 % Please edit documentation in R/needs.R
 \name{needs}
 \alias{needs}
-\title{Load/install packages.}
+\title{Attach/install packages.}
 \usage{
 needs(...)
 }
 \arguments{
-\item{...}{Package names, as unquoted names or character strings.}
+\item{...}{Packages, given as unquoted names or character strings. Specify a required package version as \code{package = "version"}.}
 }
 \description{
-Attempts to attach packages. If it fails, first installs, then attaches. Use
-it in place of \code{library} to automatically install, then attach, any
-missing packages. Supply a minimum version number to update old packages as
-needed.
+\code{needs} loads and attaches packages, automatically installing (and attaching) any it can't find in your libraries. It accepts any number of arguments, given as names or character strings. Optionally, supply a minimum version on a per-package basis to update old packages as needed.
 }
 \details{
-\code{needs} can be used as all or part of an \code{\link{Rprofile}} or
-sourced into R code directly, prior to any package loading.
+Recommended use is to allow the function to autoload when prompted the
+first time the package is loaded interactively. To change this setting later,
+run \code{needs:::autoload(TRUE)} or \code{needs:::autoload(FALSE)} to turn
+autoloading on or off, respectively.
 }
-\section{Versioning}{
+\examples{
+\dontrun{
+needs()   # returns NULL
 
-Syntax for specifying minimum version numbers
+needs(foo, bar)
+
+# require a minimum version
+needs(foo,
+      bar = "0.9.1",
+      baz = "0.4.3")
+
+}
+
 }
 \seealso{
 \code{\link{needs-package}}

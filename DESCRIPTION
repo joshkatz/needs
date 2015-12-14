@@ -1,13 +1,13 @@
 Package: needs
 Type: Package
 Title: Attaches and Installs Packages
-Version: 0.0.0-9005
+Version: 0.0.1
 Authors@R: person("Josh", "Katz", email = "josh.katz@nytimes.com", role = c("aut", "cre"))
-Description: A simple function for safe package loading and auto-installation.
+Description: A simple function for easier package loading and auto-installation.
 URL: https://github.com/joshkatz/needs
 BugReports: https://github.com/joshkatz/needs/issues
-Imports: utils
 Depends: R (>= 3.2.0)
+Imports: utils
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1.9000

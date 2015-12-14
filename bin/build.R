@@ -25,8 +25,8 @@ cat(toJSON(out, pretty = T, auto_unbox = T), file = "package.json")
 
 ### write needs.R ###
 source("R/needs.R")
-source("R/renderProfile.R")
-source("R/templates.R")
+source("R/toProfile.R")
+source("R/template.R")
 
-renderProfile(append = F)
+toProfile(append = F)
 file.rename(".Rprofile", "needs.R")

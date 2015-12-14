@@ -1,11 +1,13 @@
 GENERATED_FILES = \
 	.git/hooks/pre-commit \
 	.git/hooks/post-rewrite \
-	man/* \
+	man \
 	needs.R \
 	package.json
 
-all: $(GENERATED_FILES) _id
+SOURCE_FILES = R/*.R
+
+all: $(GENERATED_FILES) $(SOURCE_FILES) _id
 
 clean:
 	rm -rf $(GENERATED_FILES) _id
@@ -21,17 +23,21 @@ MAKEFLAGS += --no-builtin-rules
 	ln -sf ../../bin/pre-commit $@
 	chmod u+x $@
 
-_id: **/*
+_id: * **/*
 	echo 1 > inst/extdata/promptUser
 	bin/generate-id > $@
 
-check: **/*
+check:
 	Rscript --vanilla -e "devtools::check()"
 
-man/%.Rd: R/%.R
+man: $(SOURCE_FILES)
+	mkdir -p data
 	Rscript --vanilla -e "devtools::document()"	
 
-needs.R: R/*
+man/%.Rd:
+	make man
+
+needs.R: $(SOURCE_FILES)
 	Rscript --vanilla bin/build.R
 
 package.json: DESCRIPTION

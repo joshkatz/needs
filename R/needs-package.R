@@ -1,10 +1,11 @@
-#' needs: easier package loading / auto-installation
+#' Easier package loading / auto-installation
 #'
 #' @docType package
 #' @name needs-package
+#' @description
+#' \strong{needs} is a simple R function to make package loading / installation hassle-free --- use it in place of \code{library} to attach packages and automatically install any that are missing. You can also supply a minimum version number, and it will update old packages as needed. No more changing your code to reinstall packages every time you update R --- \code{needs} does it for you.
 #' @author Josh Katz
-#' @seealso \code{\link{needs}}
-#' @references \url{http://www.github.com/joshkatz/needs}
+#' @references Source repo: \url{http://www.github.com/joshkatz/needs}
 NULL
 
 .onLoad <- function(libname, pkgname) {
@@ -19,9 +20,9 @@ NULL
 
       q <- "Should `needs` load itself when it's... needed?\n  (this is recommended)"
       choices <- sample(c("Yes", "No"))
-      yes <- choices[menu(choices, title = q)] == "Yes"
+      yes <- choices[utils::menu(choices, title = q)] == "Yes"
 
-      if (yes) {
+      if (isTRUE(yes)) {
 
         siteProfile <- if (is.na(Sys.getenv("R_PROFILE", unset = NA))) {
           file.path(Sys.getenv("R_HOME"), "etc", "Rprofile.site")
