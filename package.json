@@ -1,6 +1,6 @@
 {
   "name": "needs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple function for easier package loading and auto-installation.",
   "author": {
     "name": "Josh Katz",

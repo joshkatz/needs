@@ -3,7 +3,8 @@ GENERATED_FILES = \
 	.git/hooks/post-rewrite \
 	man \
 	needs.R \
-	package.json
+	package.json \
+  README.md
 
 SOURCE_FILES = R/*.R
 
@@ -28,14 +29,18 @@ _id: * **/*
 	bin/generate-id > $@
 
 check:
-	Rscript --vanilla -e "devtools::check()"
+	Rscript -e "devtools::check()"
+	echo 1 > inst/extdata/promptUser
 
 man: $(SOURCE_FILES)
-	mkdir -p data
+	mkdir -p man
 	Rscript --vanilla -e "devtools::document()"	
 
 man/%.Rd:
 	make man
+
+README.md: readme-src.Rmd
+	Rscript --vanilla bin/render.R
 
 needs.R: $(SOURCE_FILES)
 	Rscript --vanilla bin/build.R
