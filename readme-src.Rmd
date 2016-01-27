@@ -17,12 +17,13 @@ options(repos = "https://cran.rstudio.com/")
 ```
 
 # needs
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/needs)](http://cran.r-project.org/package=needs)
 
-`needs` is a simple R function to make package loading / installation hassle-free &mdash; use it in place of `library` to attach packages and automatically install any that are missing. You can also supply a minimum version number, and it will update old packages as needed. No more changing your code to reinstall packages every time you update R &mdash; `needs` does it for you.
+`needs` is a simple R package to make package loading / installation hassle-free &mdash; use it in place of `library` to attach packages and automatically install any that are missing. You can also supply a minimum version number, and it will update old packages as needed. No more changing your code to reinstall packages every time you update R &mdash; `needs` does it for you.
 
 ```{r eval = F}
-devtools::install_github("joshkatz/needs")
-library(needs)   
+install.packages("needs")
+library(needs)
 
 # answer "yes" when prompted, and you will never have
 # to type library or install.packages again. hooray.
