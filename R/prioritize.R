@@ -10,11 +10,11 @@
 prioritize <- function(...) {
   if (missing(...)) return(invisible())
   pkgs <- as.list(substitute(list(...)))[-1]
-  for (pkg in paste0("package:", packages)) {
+  for (pkg in paste0("package:", pkgs)) {
     while (pkg %in% search()) {
       detach(pkg, character.only = T, force = T)
     }
   }
-  do.call(needs, rev(packages))
+  do.call(needs, rev(pkgs))
 }
 
