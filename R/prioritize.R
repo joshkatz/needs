@@ -16,12 +16,12 @@ prioritize <- function(...) {
     nchar(names(pkgs)) > 0
   }
 
-  for (pkg in paste0("package:", pkgs[pos])) {
+  for (pkg in paste0("package:", pkgs[!pos])) {
     while (pkg %in% search()) {
       detach(pkg, character.only = T, force = T)
     }
   }
-  do.call(needs, rev(pkgs[pos]))
+  do.call(needs, rev(pkgs[!pos]))
 
   # priorities environment
   if (sum(pos) > 0) {

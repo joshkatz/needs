@@ -26,11 +26,12 @@
 #' }
 #'
 
-needs <- function(...) {
+needs <- function(..., .printConflicts = F) {
   needs_ <- function(...) {
     pkgs <- unlist(...)
     if (length(pkgs)) {
-      loaded <- sapply(pkgs, library, character = T, logical = T)
+      loaded <- suppressMessages(
+        sapply(pkgs, library, character = T, logical = T))
       if (any(!loaded)) {
         missing <- pkgs[!loaded]
         cat("installing packages:\n")
@@ -39,7 +40,7 @@ needs <- function(...) {
                                 quiet = T)
       }
       # attach packages
-      sapply(pkgs, library, character = T)
+      suppressMessages(sapply(pkgs, library, character = T))
     }
   }
 
@@ -47,7 +48,7 @@ needs <- function(...) {
 
   #{{parse}}
   if (missing(...)) return(invisible())
-  pkgs <- match.call()[-1]
+  pkgs <- as.list(substitute(list(...)))[-1]
   parsed <- if (is.null(names(pkgs))) {
     as.character(pkgs)
   } else {
@@ -84,6 +85,22 @@ needs <- function(...) {
     }
     needs_(needsPackage[installed])
 
+  }
+
+  if (.printConflicts) {
+    s <- search()
+    conflict <- conflicts(detail = T)
+    fxns <- setdiff(unlist(conflict), c(conflict$`package:base`,
+                                        conflict$Autoloads))
+    where <- sapply(fxns, function(f) {
+      i <- 1
+      while (!length(ls(pos = i, pattern = sprintf("^%s$", f)))) {
+        i <- i + 1
+        if (i > length(s)) break
+      }
+      s[i]
+    })
+    if (length(where)) print(cbind(where[order(names(where))]))
   }
 
   invisible()

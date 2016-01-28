@@ -4,7 +4,7 @@
 \alias{needs}
 \title{Attach/install packages.}
 \usage{
-needs(...)
+needs(..., .printConflicts = F)
 }
 \arguments{
 \item{...}{Packages, given as unquoted names or character strings. Specify a required package version as \code{package = "version"}.}
