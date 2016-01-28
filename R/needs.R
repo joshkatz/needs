@@ -30,8 +30,7 @@ needs <- function(...) {
   needs_ <- function(...) {
     pkgs <- unlist(...)
     if (length(pkgs)) {
-      loaded <- suppressMessages(suppressWarnings(
-        sapply(pkgs, library, character = T, logical = T)))
+      loaded <- sapply(pkgs, library, character = T, logical = T)
       if (any(!loaded)) {
         missing <- pkgs[!loaded]
         cat("installing packages:\n")
@@ -40,8 +39,7 @@ needs <- function(...) {
                                 quiet = T)
       }
       # attach packages
-      suppressMessages(suppressWarnings(
-        sapply(pkgs, library, character = T)))
+      sapply(pkgs, library, character = T)
     }
   }
 

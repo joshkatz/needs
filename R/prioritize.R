@@ -10,11 +10,33 @@
 prioritize <- function(...) {
   if (missing(...)) return(invisible())
   pkgs <- as.list(substitute(list(...)))[-1]
-  for (pkg in paste0("package:", pkgs)) {
+  pos <- if (is.null(names(pkgs))) {
+    rep(F, length(pkgs))
+  } else {
+    nchar(names(pkgs)) > 0
+  }
+
+  for (pkg in paste0("package:", pkgs[pos])) {
     while (pkg %in% search()) {
       detach(pkg, character.only = T, force = T)
     }
   }
-  do.call(needs, rev(pkgs))
+  do.call(needs, rev(pkgs[pos]))
+
+  # priorities environment
+  if (sum(pos) > 0) {
+    while (".prioritiesEnv" %in% search()) {
+      detach(".prioritiesEnv", character.only = T, force = T)
+    }
+    .prioritiesEnv <- new.env()
+    priorities <- pkgs[pos]
+    functions <- unlist(sapply(priorities, eval))
+    packages <- rep(names(priorities),
+                    sapply(priorities, length) - 1)
+    mapply(function(p, f) {
+      assign(f, getExportedValue(p, f), envir = .prioritiesEnv)
+    }, packages, functions)
+    attach(.prioritiesEnv, warn.conflicts = F)
+  }
 }
 

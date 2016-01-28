@@ -6,8 +6,7 @@ tryCatch(needs(), error = function(e) {
     needs_ <- function(...) {
         pkgs <- unlist(...)
         if (length(pkgs)) {
-            loaded <- suppressMessages(suppressWarnings(sapply(pkgs, 
-                library, character = T, logical = T)))
+            loaded <- sapply(pkgs, library, character = T, logical = T)
             if (any(!loaded)) {
                 missing <- pkgs[!loaded]
                 cat("installing packages:n")
@@ -15,8 +14,7 @@ tryCatch(needs(), error = function(e) {
                 utils::install.packages(missing, repos = "http://cran.rstudio.com/", 
                   quiet = T)
             }
-            suppressMessages(suppressWarnings(sapply(pkgs, library, 
-                character = T)))
+            sapply(pkgs, library, character = T)
         }
     }
     packageInfo <- utils::installed.packages()
