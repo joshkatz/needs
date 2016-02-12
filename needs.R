@@ -6,8 +6,8 @@ tryCatch(needs(), error = function(e) {
     needs_ <- function(...) {
         pkgs <- unlist(...)
         if (length(pkgs)) {
-            loaded <- suppressMessages(sapply(pkgs, library, 
-                character = T, logical = T))
+            loaded <- suppressWarnings(suppressMessages(sapply(pkgs, 
+                library, character = T, logical = T)))
             if (any(!loaded)) {
                 missing <- pkgs[!loaded]
                 cat("installing packages:n")
@@ -15,7 +15,8 @@ tryCatch(needs(), error = function(e) {
                 utils::install.packages(missing, repos = "http://cran.rstudio.com/", 
                   quiet = T)
             }
-            suppressMessages(sapply(pkgs, library, character = T))
+            suppressWarnings(suppressMessages(sapply(pkgs, library, 
+                character = T)))
         }
     }
     packageInfo <- utils::installed.packages()
@@ -55,8 +56,10 @@ tryCatch(needs(), error = function(e) {
     if (.printConflicts) {
         s <- search()
         conflict <- conflicts(detail = T)
-        fxns <- setdiff(unlist(conflict), c(conflict$`package:base`, 
-            conflict$Autoloads))
+        conflict[names(conflict) %in% c("package:base", "Autoloads", 
+            ".GlobalEnv")] <- NULL
+        tab <- table(unlist(sapply(conflict, unique)))
+        fxns <- names(tab[tab > 1])
         where <- sapply(fxns, function(f) {
             i <- 1
             while (!length(ls(pos = i, pattern = sprintf("^%s$", 

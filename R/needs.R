@@ -30,8 +30,8 @@ needs <- function(..., .printConflicts = F) {
   needs_ <- function(...) {
     pkgs <- unlist(...)
     if (length(pkgs)) {
-      loaded <- suppressMessages(
-        sapply(pkgs, library, character = T, logical = T))
+      loaded <- suppressWarnings(suppressMessages(
+        sapply(pkgs, library, character = T, logical = T)))
       if (any(!loaded)) {
         missing <- pkgs[!loaded]
         cat("installing packages:\n")
@@ -40,7 +40,7 @@ needs <- function(..., .printConflicts = F) {
                                 quiet = T)
       }
       # attach packages
-      suppressMessages(sapply(pkgs, library, character = T))
+      suppressWarnings(suppressMessages(sapply(pkgs, library, character = T)))
     }
   }
 
@@ -90,8 +90,9 @@ needs <- function(..., .printConflicts = F) {
   if (.printConflicts) {
     s <- search()
     conflict <- conflicts(detail = T)
-    fxns <- setdiff(unlist(conflict), c(conflict$`package:base`,
-                                        conflict$Autoloads))
+    conflict[names(conflict) %in% c("package:base", "Autoloads", ".GlobalEnv")] <- NULL
+    tab <- table(unlist(sapply(conflict, unique)))
+    fxns <- names(tab[tab > 1])
     where <- sapply(fxns, function(f) {
       i <- 1
       while (!length(ls(pos = i, pattern = sprintf("^%s$", f)))) {
