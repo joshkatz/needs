@@ -1,8 +1,7 @@
 language: r
 cache: packages
 warnings_are_errors: true
-sudo: required
 r:
   -oldrel
-  -release
   -devel
+sudo: required
