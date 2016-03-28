@@ -1,8 +1,26 @@
-#' Re-attach packages to prevent masking.
+#' Re-attach packages to prevent masking
 #'
-#' @description \code{prioritize} detaches packages from the search path, then re-attaches them, placing them at the beginning of the search path to prevent masking.
+#' @description \code{prioritize} detaches packages from the search path, then
+#'   re-attaches them, placing them at the beginning of the search path to
+#'   prevent masking. This allows for the loading of packages with conflicting
+#'   function names in any order.
 #'
-#' @param ... Packages, given as unquoted names or character strings. Earlier arguments will be attached later (and therefore get a higher priority).
+#' @param ... Packages, given as unquoted names or character strings. Earlier
+#'   arguments will be attached later (and therefore get a higher priority).
+#'
+#' @details If you find yourself calling this function a lot, you're probably
+#'   doing something wrong.
+#'
+#' @examples
+#' \dontrun{
+#'
+#' # loading plyr after dplyr causes badness
+#' needs(dplyr, plyr)
+#'
+#' # prioritize the functions in dplyr
+#' prioritize(dplyr)
+#'
+#' }
 #'
 #' @export
 #'
@@ -22,21 +40,5 @@ prioritize <- function(...) {
     }
   }
   do.call(needs, rev(pkgs[!pos]))
-
-  # priorities environment
-  if (sum(pos) > 0) {
-    while (".prioritiesEnv" %in% search()) {
-      detach(".prioritiesEnv", character.only = T, force = T)
-    }
-    .prioritiesEnv <- new.env()
-    priorities <- pkgs[pos]
-    functions <- unlist(sapply(priorities, eval))
-    packages <- rep(names(priorities),
-                    sapply(priorities, length) - 1)
-    mapply(function(p, f) {
-      assign(f, getExportedValue(p, f), envir = .prioritiesEnv)
-    }, packages, functions)
-    attach(.prioritiesEnv, warn.conflicts = F)
-  }
 }
 

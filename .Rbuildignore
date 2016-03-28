@@ -13,3 +13,4 @@
 ^cran-comments
 ^NEWS
 ^README
+^cran-comments\.md$
