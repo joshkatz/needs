@@ -13,3 +13,6 @@
 ^cran-comments
 ^NEWS
 ^README
+^cran-comments\.md$
+^revdep$
+^\.travis\.yml$

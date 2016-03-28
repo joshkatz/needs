@@ -10,6 +10,8 @@
 
 ```r
 install.packages("needs")
+# for the dev version:
+# devtools::install_github("joshkatz/needs", ref = "development")
 library(needs)
 
 # answer "yes" when prompted, and you will never have

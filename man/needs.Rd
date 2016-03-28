@@ -2,21 +2,32 @@
 % Please edit documentation in R/needs.R
 \name{needs}
 \alias{needs}
-\title{Attach/install packages.}
+\title{Attach/install packages}
 \usage{
-needs(...)
+needs(..., .printConflicts = F)
 }
 \arguments{
-\item{...}{Packages, given as unquoted names or character strings. Specify a required package version as \code{package = "version"}.}
+\item{...}{Packages, given as unquoted names or character strings. Specify a
+required package version as \code{package = "version"}.}
+
+\item{.printConflicts}{Logical, specifying whether to print a summary of
+objects that exist in multiple places on the search path along with their
+respective locations. Set to \code{TRUE} to identify any masked functions.
+Objects in the base package and the global environment are ignored.
+Defaults to \code{FALSE}.}
 }
 \description{
-\code{needs} loads and attaches packages, automatically installing (and attaching) any it can't find in your libraries. It accepts any number of arguments, given as names or character strings. Optionally, supply a minimum version on a per-package basis to update old packages as needed.
+\code{needs} loads and attaches packages, automatically
+  installing (and attaching) any it can't find in your libraries. It accepts
+  any number of arguments, given as names or character strings. Optionally,
+  supply a minimum version on a per-package basis to update old packages as
+  needed.
 }
 \details{
-Recommended use is to allow the function to autoload when prompted the
-first time the package is loaded interactively. To change this setting later,
-run \code{needs:::autoload(TRUE)} or \code{needs:::autoload(FALSE)} to turn
-autoloading on or off, respectively.
+Recommended use is to allow the function to autoload when prompted
+  the first time the package is loaded interactively. To change this setting
+  later, run \code{needs:::autoload(TRUE)} or \code{needs:::autoload(FALSE)}
+  to turn autoloading on or off, respectively.
 }
 \examples{
 \dontrun{
@@ -28,6 +39,7 @@ needs(foo, bar)
 needs(foo,
       bar = "0.9.1",
       baz = "0.4.3")
+
 
 }
 

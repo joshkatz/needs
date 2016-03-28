@@ -3,20 +3,19 @@ GENERATED_FILES = \
 	.git/hooks/post-rewrite \
 	man \
 	needs.R \
-	package.json \
-  README.md
+	README.md
 
 SOURCE_FILES = R/*.R
 
-all: $(GENERATED_FILES) $(SOURCE_FILES) _id
+all: $(GENERATED_FILES) $(SOURCE_FILES)
 
 clean:
-	rm -rf $(GENERATED_FILES) _id
+	rm -rf $(GENERATED_FILES)
 
 MAKEFLAGS += --no-builtin-rules
 .SUFFIXES:
 
-.PHONY: all clean check files
+.PHONY: all clean check
 
 .SECONDARY:
 
@@ -24,12 +23,8 @@ MAKEFLAGS += --no-builtin-rules
 	ln -sf ../../bin/pre-commit $@
 	chmod u+x $@
 
-_id: * **/*
-	echo 1 > inst/extdata/promptUser
-	bin/generate-id > $@
-
 check:
-	Rscript -e "devtools::check()"
+	Rscript -e "devtools::check(check_version = T, cleanup = F)"
 	echo 1 > inst/extdata/promptUser
 
 man: $(SOURCE_FILES)
@@ -43,7 +38,4 @@ README.md: readme-src.Rmd
 	Rscript --vanilla bin/render.R
 
 needs.R: $(SOURCE_FILES)
-	Rscript --vanilla bin/build.R
-
-package.json: DESCRIPTION
 	Rscript --vanilla bin/build.R

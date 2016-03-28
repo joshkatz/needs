@@ -5,7 +5,12 @@
 \alias{needs-package}
 \title{Easier package loading / auto-installation}
 \description{
-\strong{needs} is a simple R function to make package loading / installation hassle-free --- use it in place of \code{library} to attach packages and automatically install any that are missing. You can also supply a minimum version number, and it will update old packages as needed. No more changing your code to reinstall packages every time you update R --- \code{needs} does it for you.
+\strong{needs} is a simple R function to make package loading /
+installation hassle-free --- use it in place of \code{library} to attach
+packages and automatically install any that are missing. You can also supply
+a minimum version number, and it will update old packages as needed. No more
+changing your code to reinstall packages every time you update R ---
+\code{needs} does it for you.
 }
 \author{
 Josh Katz
