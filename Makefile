@@ -24,7 +24,7 @@ MAKEFLAGS += --no-builtin-rules
 	chmod u+x $@
 
 check:
-	Rscript -e "devtools::check()"
+	Rscript -e "devtools::check(check_version = T, cleanup = F)"
 	echo 1 > inst/extdata/promptUser
 
 man: $(SOURCE_FILES)
