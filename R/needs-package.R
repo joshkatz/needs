@@ -33,14 +33,17 @@ NULL
         } else {
           Sys.getenv("R_PROFILE")
         }
+
         if (!file.exists(siteProfile)) {
           file.create(siteProfile)
         }
         cxn <- file(siteProfile)
         lines <- readLines(cxn)
+
         if (!any(grepl("^[:blank:]*autoload\\(\"needs\", \"needs\"\\)", lines))) {
           write('\n\nautoload("needs", "needs")\n\n', file = siteProfile, append = T)
         }
+
         close(cxn)
 
       }

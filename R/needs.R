@@ -59,7 +59,6 @@ needs <- function(..., .printConflicts = F) {
 
   packageInfo <- utils::installed.packages()
 
-  #{{parse}}
   if (!missing(...)) {
 
     pkgs <- as.list(substitute(list(...)))[-1]
@@ -71,7 +70,6 @@ needs <- function(..., .printConflicts = F) {
     }
     parts <- lapply(strsplit(parsed, "[:=(, ]+"), function(d) { d[d != ""] })
     grouped <- split(parts, sapply(parts, length))
-    #{{/parse}}
 
     # load latest/current version of packages
     needs_(grouped$`1`)
