@@ -49,7 +49,7 @@ needs <- function(..., .printConflicts = F) {
         missing <- pkgs[!loaded]
         cat("installing packages:\n")
         cat(missing, sep = "\n")
-        utils::install.packages(missing, repos = "http://cran.rstudio.com/",
+        utils::install.packages(missing,
                                 quiet = T)
       }
       # attach packages
