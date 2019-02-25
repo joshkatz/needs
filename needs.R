@@ -12,7 +12,7 @@ tryCatch(needs(), error = function(e) {
                 missing <- pkgs[!loaded]
                 cat("installing packages:n")
                 cat(missing, sep = "n")
-                utils::install.packages(missing, repos = "http://cran.rstudio.com/", 
+                utils::install.packages(missing,
                   quiet = T)
             }
             suppressWarnings(suppressMessages(sapply(pkgs, library, 
